@@ -3,7 +3,7 @@ import WebSocket , { WebSocketServer } from 'ws'
 
 const app = express()
 
-const httpServer = app.listen(8080)
+const httpServer = app.listen(8080,()=>console.log("Server started"))
 
 const wss = new WebSocketServer({server:httpServer})
 
@@ -43,7 +43,6 @@ wss.on('connection', (ws, req)=>{
                 user.ws.send(res)
             }
         })
-        console.log("MEssage recieved : ",message);
     })
 
     ws.on('close', ()=>console.log("user : "+userId+" left the room/disconnected"));
